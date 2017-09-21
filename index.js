@@ -22,7 +22,8 @@ app.use(express.static(__dirname + '/static'));
 app.get('/', function (req, res) {  
   const callback = function(err, result){
     if(err){ console.log(err)}
-    const rows = JSON.stringify({})
+
+    let rows = JSON.stringify({})
     if(result.rowCount > 1){
       rows = JSON.stringify(result.rows)
     }
