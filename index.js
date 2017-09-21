@@ -21,8 +21,12 @@ app.use(express.static(__dirname + '/static'));
 
 app.get('/', function (req, res) {  
   const callback = function(err, result){
-    const rows = JSON.stringify(result.rows)
+    const rows = {}
+    if(result.rowsCount > 1){
+      rows = JSON.stringify(result.rows)
+    }
     res.render('index', { rows });
+    
   }
 
   const filters = {
