@@ -246,7 +246,7 @@ function initMap() {
     }
 
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
+    if(!rows){ return; }
     for(marker of rows){
         generateMarker(marker.placename, marker.placedescription, marker.submittedby, marker.lat, marker.lng, marker.icon)
     }

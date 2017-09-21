@@ -22,8 +22,8 @@ app.use(express.static(__dirname + '/static'));
 app.get('/', function (req, res) {  
   const callback = function(err, result){
     if(err){ console.log(err)}
-    const rows = {}
-    if(result.rowsCount > 1){
+    const rows = JSON.stringify({})
+    if(result.rowCount > 1){
       rows = JSON.stringify(result.rows)
     }
     res.render('index', { rows });
