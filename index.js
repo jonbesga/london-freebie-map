@@ -26,7 +26,7 @@ app.get('/', function (req, res) {
   }
 
   const filters = {
-    city: 'Test'
+    city: 'London'
   }
   db.selectFromDB('markers', filters, callback)
 });
