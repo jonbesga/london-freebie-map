@@ -1,65 +1,64 @@
 extends layout
 
 block head
+
     link(rel="stylesheet", href="css/style.css")
-    //- <!-- Start of Async Drift Code -->
-    script.
-        !function() {
-        var t;
-        if (t = window.driftt = window.drift = window.driftt || [], !t.init) return t.invoked ? void (window.console && console.error && console.error("Drift snippet included twice.")) : (t.invoked = !0, 
-        t.methods = [ "identify", "config", "track", "reset", "debug", "show", "ping", "page", "hide", "off", "on" ], 
-        t.factory = function(e) {
-            return function() {
-            var n;
-            return n = Array.prototype.slice.call(arguments), n.unshift(e), t.push(n), t;
-            };
-        }, t.methods.forEach(function(e) {
-            t[e] = t.factory(e);
-        }), t.load = function(t) {
-            var e, n, o, i;
-            e = 3e5, i = Math.ceil(new Date() / e) * e, o = document.createElement("script"), 
-            o.type = "text/javascript", o.async = !0, o.crossorigin = "anonymous", o.src = "https://js.driftt.com/include/" + i + "/" + t + ".js", 
-            n = document.getElementsByTagName("script")[0], n.parentNode.insertBefore(o, n);
-        });
-        }();
-        drift.SNIPPET_VERSION = '0.3.1';
-        drift.load('8zkpzas883vf');    
-    //- <!-- End of Async Drift Code -->
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
     
 block content
-    nav.navbar.navbar-inverse.bg-inverse.fixed-top.navbar-toggleable
-        a.navbar-brand(href='#') London Freebie Map
-        .navbar.mr-auto
-            ul.navbar-nav
-                li.nav-item
-                    button#add-place.btn.btn-outline-success(type='submit') Add place
+    nav(role='navigation')
+        a(href="#" class="brand-logo") London Freebie Map
         
 
+    .container
+        #welcomeOverlay.overlay
+            p Welcome to the London Freebie Map, a map where you can discover places in London that gives free samples and free trials (food, drinks, gifts!)
+            p This is a collaborative map so if you know any place, help others to find it  pressing the button below to add it to the map!
+        #editInfoOverlay.overlay(style='display: none;')
+            p Drag the map and to place the red marker wherever you want to add the new place
+
+    button#openEditModeBtn.btn-floating.btn-large.blue.absoluteBtn.waves-effect.waves-light(type='submit', name='action')
+        i.material-icons add
+
+    button#saveAndWritePropertiesBtn.absoluteBtn.btn-floating.btn-large.cyan.waves-effect.waves-light(type='submit', name='action' style='display: none;')
+        i.material-icons create
+
+    // Modal Structure
+    #modal1.modal.modal-fixed-footer
+        .modal-content
+            h3 Place properties
+            form#editModeForm.col.s12
+                .input-field.col.s6
+                    label(for="placename") Place name
+                    input(type='text' name='placename' placeholder='Cool Coffee Cafe')
+                .input-field.col.s6
+                    label(for="description") What things are given for free?
+                    input(type='text' name='description' placeholder='Free coffee, small chocolate tablets, etc...')
+                .input-field.col.s6 
+                    label(for="submittedby") Submitted by
+                    input(type='text' name='submittedby' placeholder="Your Twitter username (optional)")
+
+        .modal-footer
+            button#submitButton.btn.btn-primary(type='submit') Submit place 
+
+        
+
+        
     #map
-    #editMode(style='display: none;')
-        h2#instructions Drag the map to place the marker of the center where you want to create the marker and then press the green flag to add the properties
-        #centerMarker
+    #editMarker
 
-        .button-container
-            .button-subcontainer
-                button#saveButton.add-place(type='submit')
-                    span.add-place-icon.map-icon.map-icon-embassy
-
-
+    .footer
+            p Made by 
+                a(href='https://www.twitter.com/jonbesga') @jonbesga
     script.
         const rows = !{rows}
-    //- script.
-    //-     $('.navbar-nav>li>a').on('click', function(){
-    //-         $('.navbar-collapse').collapse('hide');
-    //-     });
 
-    //-     $('.my-2.my-lg-0>button').on('click', function(){
-    //-         $('.navbar-collapse').collapse('hide');
-    //-     });
-
+    
+    script(src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous")
+    // Compiled and minified JavaScript
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js')
     script(src="/js/map.js")
     script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAAqYZLLYExydl0vHbSPtQevqBZTntwpMQ&callback=initMap', async='', defer='')
-        
 
 
 

@@ -7,7 +7,8 @@ CREATE TABLE markers (
     submittedBy text,
     lat DOUBLE PRECISION,
     lng DOUBLE PRECISION,
-    icon text
+    icon text,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
 -- MOCKUP DATA

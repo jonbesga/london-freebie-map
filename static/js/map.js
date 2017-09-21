@@ -1,4 +1,37 @@
 let map;
+let editMode = false;
+
+$(document).ready(function(){
+    $('.modal').modal();
+});
+
+const welcomeOverlay = document.getElementById('welcomeOverlay')
+const openEditModeBtn = document.getElementById('openEditModeBtn')
+const saveAndWritePropertiesBtn = document.getElementById('saveAndWritePropertiesBtn')
+const editMarker = document.getElementById('editMarker')
+const editInfoOverlay = document.getElementById('editInfoOverlay')
+
+document.body.addEventListener('click', function click(){
+    welcomeOverlay.style.display = 'none'
+    document.body.removeEventListener('click', click, false)
+}, false)
+
+openEditModeBtn.addEventListener('click', function(){
+    this.style.display = 'none'
+    saveAndWritePropertiesBtn.style.display = 'block'
+    editInfoOverlay.style.display = 'block'
+    editMarker.style.display = 'block'
+    
+});
+
+saveAndWritePropertiesBtn.addEventListener('click', function(){
+    $('#modal1').modal('open');
+    this.style.display = 'none'
+    openEditModeBtn.style.display = 'block'
+    editInfoOverlay.style.display = 'none'
+    editMarker.style.display = 'none'
+});
+
 
 function initMap() {
     const mapStyle = [
@@ -251,9 +284,47 @@ function initMap() {
         generateMarker(marker.placename, marker.placedescription, marker.submittedby, marker.lat, marker.lng, marker.icon)
     }
 
-    // document.getElementById('add-place').addEventListener('click', function(){
-    //     editMode()
-    // });
+    google.maps.event.addDomListener(window, "resize", function() {
+        var center = map.getCenter();
+        google.maps.event.trigger(map, "resize");
+        map.setCenter(center); 
+    });
+    
+    
+    
+
+    submitButton.addEventListener('click', function(){
+        const title = editModeForm.elements[0].value
+        const description = editModeForm.elements[1].value
+        const submittedBy = editModeForm.elements[2].value || 'Unknown'
+        const lat = map.getCenter().lat()
+        const lng = map.getCenter().lng()
+        const icon = 'liquor.png'
+
+        if(!title || !description){
+            alert('You need to put a name and a description')
+            return;
+        }
+
+        generateMarker(title, description, submittedBy, lat, lng, icon)
+        $.ajax ({   
+            type: "POST",
+            url: '/places',
+            data: { 
+                city: 'London',
+                title,
+                description,
+                submittedBy,
+                lat,
+                lng,
+                icon
+            },
+            success: function() {
+                console.log('success')
+            }
+        });
+        $('#modal1').modal('close');
+    })
 }
 
 function generateMarker(title, description, submittedBy, lat, lng, icon){
@@ -278,52 +349,3 @@ function generateMarker(title, description, submittedBy, lat, lng, icon){
         infowindow.close()
     })
 }
-
-// function editMode(){
-
-//     const centerMarker = document.getElementById('centerMarker')
-//     const saveButton = document.getElementById('saveButton')
-//     const editMode = document.getElementById('editMode')
-//     const form = document.getElementById('addplace-form')
-//     const submitButton = document.getElementById('submitAddPlace')
-
-//     submitButton.addEventListener('click', function(){
-//         const title = form.elements[0].value
-//         const description = form.elements[1].value
-//         const submittedBy = form.elements[2].value
-//         const lat = map.getCenter().lat()
-//         const lng = map.getCenter().lng()
-//         const icon = 'liquor.png'
-
-//         generateMarker(title, description, submittedBy, lat, lng, icon)
-
-//         $.ajax ({   
-//             type: "POST",
-//             url: '/places',
-//             data: { 
-//                 title,
-//                 description,
-//                 submittedBy,
-//                 lat,
-//                 lng,
-//                 icon
-//             },
-//             success: function() {
-//                 console.log('success')
-//             }
-//         });
-//     })
-
-//     centerMarker.style.display = 'block';
-//     editMode.style.display = 'block';
-
-//     saveButton.addEventListener('click', function(e){
-//         $('#exampleModal').modal('toggle')
-
-//     })
-
-//     google.maps.event.addListener(map, 'center_changed', function() { 
-//         console.log(map.getCenter().lat(),map.getCenter().lng())
-//     });  
-// }
-
