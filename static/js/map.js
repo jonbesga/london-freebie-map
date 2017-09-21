@@ -299,7 +299,7 @@ function initMap() {
         const submittedBy = editModeForm.elements[2].value || 'Unknown'
         const lat = map.getCenter().lat()
         const lng = map.getCenter().lng()
-        const icon = 'liquor.png'
+        const icon = 'default_marker.png'
 
         if(!title || !description){
             alert('You need to put a name and a description')

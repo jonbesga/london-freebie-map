@@ -88,3 +88,8 @@ html, body {
 .modal{
   max-height: 100%;
 }
+
+iframe#drift-widget{
+  left: 0 !important;
+  bottom: 50px !important;
+}
