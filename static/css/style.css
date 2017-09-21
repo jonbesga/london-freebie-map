@@ -1,0 +1,109 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+body {
+  padding-top: 56px;
+}
+.add-place{
+  background-color: green;
+  fill: rgb(255, 255, 255);
+  cursor: pointer;
+  width: 52px;
+  height: 52px;
+  border-radius: .3125rem;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,.4);
+  overflow: hidden;
+  z-index: 1;
+  padding: 0;
+  border: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.add-place-icon{
+  fill: inherit;
+  stroke: inherit;
+}
+.map-icon {
+  color: white;
+  font-size: 24px;
+}
+.button-container{
+  position: fixed;
+  top: calc(24px + 56px);
+  left: auto;
+  bottom: auto;
+  right: 24px;
+  width: 76px !important;
+  height: 76px !important;
+  visibility: visible;
+  z-index: 2147483647;
+}
+
+.button-subcontainer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  padding: .75rem .75rem .75rem 1rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+#centerMarker {
+  display: none;
+  position: absolute;
+  /*url of the marker*/
+  background: url(https://maps.gstatic.com/mapfiles/markers2/marker.png) no-repeat;
+  /*center the marker*/
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  /*fix offset when needed*/
+  margin-left: -10px;
+  /*size of the image*/
+  height: 34px;
+  width: 20px;
+  cursor: pointer;
+}
+#editMode{
+  display: none;
+}
+.modal-dialog{
+  /* background-color: white; */
+  margin: 100px auto;
+}
+#instructions{
+  color: blue;
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  top: 60px;
+  text-align: center;
+  display: flex;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
