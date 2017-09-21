@@ -74,6 +74,7 @@ block content
 
     #map
     #editMarker
+    input#searchBarInput(type="text" class="controls" placeholder="Search your place")
 
     .footer
             p Made by 
@@ -86,7 +87,7 @@ block content
     // Compiled and minified JavaScript
     script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js')
     script(src="/js/map.js")
-    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAAqYZLLYExydl0vHbSPtQevqBZTntwpMQ&callback=initMap', async='', defer='')
+    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAAqYZLLYExydl0vHbSPtQevqBZTntwpMQ&callback=initMap&libraries=places', async='', defer='')
 
 
 

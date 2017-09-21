@@ -48,6 +48,14 @@ html, body {
   background-color: rgba(0,0,0,0.5); /*dim the background*/
 }
 
+#searchBarInput{
+  position: absolute;
+  top: 64px;
+  left: 50% !important;
+  width: 400px;
+  background-color: white;
+  opacity: 50%;
+}
 @media (max-width: 576px) {
   .overlay{
     margin-top: 56px;
@@ -63,6 +71,10 @@ html, body {
     text-align: center;
     width: 100%;
     font-size: 1.5rem; 
+  }
+  #searchBarInput{
+    width: 100% !important;
+    left: 0 !important;
   }
 }
 
@@ -93,3 +105,4 @@ iframe#drift-widget{
   left: 0 !important;
   bottom: 50px !important;
 }
+
